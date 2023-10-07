@@ -1,6 +1,6 @@
 const djs = require('discord.js');
 const log = require('../logger');
-const { cp } = require('fs');
+const db = require('../db');
 
 module.exports = {
     name: djs.Events.GuildCreate,
@@ -11,6 +11,13 @@ module.exports = {
 
         const guildAvatar = guild.iconURL({ dynamic: true });
         const guildBanner = guild.bannerURL({ dynamic: true });
+
+        // add guild to database
+        await db.query(`INSERT INTO guilds (guild_id, owner_id) VALUES ('${guild.id}', '${guild.ownerId}')`);
+        log.db(`Added guild ${guild.id} to table guilds`);
+        await db.query(`INSERT INTO tournaments (guild_id) VALUES ('${guild.id}')`);
+        log.db(`Added guild ${guild.id} to table tournaments`);
+
 
 
         const embed = new djs.EmbedBuilder()

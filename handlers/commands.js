@@ -35,6 +35,5 @@ client.on(djs.Events.ClientReady, async (client) => {
         log.info(`Successfully registered ${commands.length} slash commands to ${client.user.tag} on ${client.guilds.cache.size} guilds`);
     } catch (error) {
         log.error(error);
-        // console.log(error);
     }
 });

@@ -8,6 +8,7 @@ module.exports = {
     async execute(interaction) {
         let client = interaction.client;
 
+
         try {
             if (!interaction.isChatInputCommand()) return;
             let command = interaction.client.commands.get(interaction.commandName);
