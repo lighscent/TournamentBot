@@ -16,5 +16,16 @@ module.exports = {
                 }
             ]
         });
+
+        db.query(`CREATE TABLE IF NOT EXISTS guilds (
+            guild_id VARCHAR(20) PRIMARY KEY,
+            owner_id VARCHAR(20) NOT NULL,
+            premium BOOLEAN NOT NULL DEFAULT FALSE
+        )`)
+
+        db.query(`CREATE TABLE IF NOT EXISTS users (
+            user_id VARCHAR(20) PRIMARY KEY,
+            permissionLevel INT NOT NULL DEFAULT 0
+        )`)
     }
 }
